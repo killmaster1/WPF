@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WPF
 {
-    class DataClass
+    public class DataClass
     {
         public Dictionary<string, string[,]> d;
         public List<UcitelClass> uc;
@@ -37,7 +37,6 @@ namespace WPF
                 if (line[0] != ' ' && line[0] != '*')
                 {
                     citam_pred = true;
-                    Console.WriteLine(line);
                     d.Add(line,new string[14,5]);
                     u = new UcitelClass(line);
                     uc.Add(u);

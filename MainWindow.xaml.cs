@@ -28,6 +28,7 @@ namespace WPF
         public MainWindow()
         {
             InitializeComponent();
+            addButton.IsEnabled = false;
             tabulka.RowGroups.Add(new TableRowGroup());
             tabulka.RowGroups[0].Rows.Add(new TableRow());
             TableRow currentRow = tabulka.RowGroups[0].Rows[0];
@@ -96,30 +97,13 @@ namespace WPF
 
                 Console.WriteLine("Opening: " + openFileDialog1.FileName);
                 data.loadFileData(openFileDialog1.FileName);
-                /*try
-                {
-                    if ((myStream = openFileDialog1.OpenFile()) != null)
-                    {
-                        using (myStream)
-                        {
-                            // Insert code to read the stream here.
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
-                }*/
-                foreach (string key in data.d.Keys)
-                {
-                    Console.WriteLine(key);
-                }
+                addButton.IsEnabled = true;
             }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Window a = new ChildWindow();
+            Window a = new ChildWindow(data);
             a.Owner = this;
             a.Show();
         }
