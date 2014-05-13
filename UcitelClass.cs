@@ -37,8 +37,23 @@ namespace WPF
             return true;
         }
 
+        public bool addPredmet(int den, int cas, int pocet_hodin, string nazov)
+        {
+            //int day = daytoindex(den);
+            //int time = timetoindex(cas);
+            //int pocet = Convert.ToInt32(pocet_hodin);
+
+            for (int i = 0; i < pocet;i++ )
+            {
+                pred[time, day] = nazov;
+                time++;
+            }
+
+            return true;
+        }
+
         // preklada nazvy dni do indexov do pola
-        private int daytoindex(string pred)
+        public int daytoindex(string pred)
         {
             switch (pred)
             {
