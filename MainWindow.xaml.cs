@@ -17,6 +17,10 @@ using System.IO;
 
 namespace WPF
 {
+    static class Constants
+    {
+        public const int PREDMET_LENGTH = 72;
+    }
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -29,14 +33,46 @@ namespace WPF
         {
             InitializeComponent();
             addButton.IsEnabled = false;
+            data = new DataClass();
+            createTable();
+        }
+//-----------------------------------------------------------------------------------------------------------
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+
+            openFileDialog1.InitialDirectory = "c:\\";
+            openFileDialog1.Filter = "txt files (*.txt)|*.txt";
+            openFileDialog1.FilterIndex = 2;
+            openFileDialog1.RestoreDirectory = true;
+            Nullable<bool> result = openFileDialog1.ShowDialog();
+            if (result == true)
+            {
+
+                Console.WriteLine("Opening: " + openFileDialog1.FileName);
+                data.loadFileData(openFileDialog1.FileName);
+                addButton.IsEnabled = true;
+            }
+            updateCombo();
+            
+        }
+
+        private void updateCombo()
+        {
+            foreach (UcitelClass u in data.uc)
+            {
+                combo1.Items.Add(u.Name);
+            }
+        }
+//-----------------------------------------------------------------------------------------------------------
+        private void createTable()
+        {
             tabulka.RowGroups.Add(new TableRowGroup());
             tabulka.RowGroups[0].Rows.Add(new TableRow());
             TableRow currentRow = tabulka.RowGroups[0].Rows[0];
-            data = new DataClass();
 
-            // Global formatting for the title row.
             currentRow.Background = Brushes.Silver;
-            currentRow.FontSize = 20;
+            currentRow.FontSize = 10;
             currentRow.FontWeight = System.Windows.FontWeights.Bold;
 
             // Add the header row with content, 
@@ -53,59 +89,69 @@ namespace WPF
             pom = new Run("Friday");
             currentRow.Cells.Add(new TableCell(new Paragraph(pom)));
 
-            
 
-            DateTime dateN = new DateTime(2000, 1, 1, 19, 10,00);
+            DateTime dateN = new DateTime(2000, 1, 1, 19, 10, 00);
             int i = 0;
             sched = new Run[14, 5];
-            for (DateTime date1 = new DateTime(2000, 1, 1, 8, 10,00);
-                date1<dateN;
-                date1=date1.AddMinutes(50))
+            for (DateTime date1 = new DateTime(2000, 1, 1, 8, 10, 00);
+                date1 < dateN;
+                date1 = date1.AddMinutes(50))
             {
                 TableRow tr = new TableRow();
+                tr.FontSize = 10;
+                if (i % 2 == 1)
+                {
+                    tr.Background = Brushes.Silver;
+                }
+
                 tabulka.RowGroups[0].Rows.Add(tr);
                 pom = new Run(date1.ToString("HH:mm"));
                 tr.Cells.Add(new TableCell(new Paragraph(pom)));
-                //sched[0, 0]  = new Run("volaco");
-                //tr.Cells.Add(new TableCell(new Paragraph(sched[0, 0])));
                 for (int j = 0; j < 5; j++)
                 {
-                    sched[i, j] = new Run(date1.ToString(i.ToString() + " " + j.ToString()));
-                    sched[i, j].Text = i.ToString() + " " + j.ToString();
-                    tr.Cells.Add(new TableCell(new Paragraph(sched[i,j])));
+                    sched[i, j] = new Run();
+                    TableCell asd = new TableCell(new Paragraph(sched[i,j]));
+                    tr.Cells.Add(asd);
+                    showInTable(i, j, i.ToString() + " " + j.ToString(), true);
                 }
                 i++;//toto az na koniec
             }
-            
-                //tabulka.RowGroups[0].Rows.Add(new TableRow());
-            //currentRow = tabulka.RowGroups[0].Rows[1];
-            
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Stream myStream = null;
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-
-            openFileDialog1.InitialDirectory = "c:\\";
-            openFileDialog1.Filter = "txt files (*.txt)|*.txt";
-            openFileDialog1.FilterIndex = 2;
-            openFileDialog1.RestoreDirectory = true;
-            Nullable<bool> result = openFileDialog1.ShowDialog();
-            if (result == true)
-            {
-
-                Console.WriteLine("Opening: " + openFileDialog1.FileName);
-                data.loadFileData(openFileDialog1.FileName);
-                addButton.IsEnabled = true;
+            for(int  k =0;k<15;k++){
+                for (int l = 0; l < 6; l++)
+                {
+                    tabulka.RowGroups[0].Rows[k].Cells[l].Padding = new Thickness(12);
+                }
             }
         }
-
+//-----------------------------------------------------------------------------------------------------------
+        private void showInTable(int cas,int den,string predmet,bool ok)
+        {
+            int pom = Constants.PREDMET_LENGTH;
+            int n = pom-predmet.Length;
+                if (ok)
+                {
+                    if (cas % 2 == 1)
+                    {
+                        tabulka.RowGroups[0].Rows[cas+1].Cells[den+1].Background = Brushes.Silver;
+                    }
+                    else
+                    {
+                        tabulka.RowGroups[0].Rows[cas + 1].Cells[den + 1].Background = Brushes.White;
+                    }
+                    sched[cas, den].Text = predmet;
+                }
+                else
+                {
+                    tabulka.RowGroups[0].Rows[cas + 1].Cells[den + 1].Background = Brushes.Red;
+                    sched[cas, den].Text = predmet;
+                }
+        }
+//-----------------------------------------------------------------------------------------------------------
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             Window a = new ChildWindow(data);
             a.Owner = this;
-            a.Show();
+            a.ShowDialog();
         }
     }
 }

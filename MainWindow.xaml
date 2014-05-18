@@ -3,10 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="724.628" Width="1011.568">
     <Grid Margin="0,0,2,-6">
-        <Button Content="Browse..." HorizontalAlignment="Left" Margin="872,657,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click"/>
-        <ComboBox x:Name="combo1" HorizontalAlignment="Left" Margin="872,10,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Browse..." HorizontalAlignment="Left" Margin="872,669,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click"/>
+        <ComboBox x:Name="combo1" HorizontalAlignment="Left" Margin="872,10,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="-0.142,3.182"/>
         <Grid Margin="0,0,135,28">
-            <FlowDocumentScrollViewer Margin="10,0,0,10" VerticalScrollBarVisibility="Disabled">
+            <FlowDocumentScrollViewer Margin="0,10,10,0" VerticalScrollBarVisibility="Disabled">
                 <FlowDocument>
                     <Table x:Name="tabulka" CellSpacing="5" BorderThickness="2">
 
@@ -107,6 +107,6 @@
                 </FlowDocument>
             </FlowDocumentScrollViewer>
         </Grid>
-        <Button x:Name="addButton" Content="Add Requirements" HorizontalAlignment="Left" Margin="872,611,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click_1"/>
+        <Button x:Name="addButton" Content="Add Requirements" HorizontalAlignment="Left" Margin="872,642,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click_1"/>
     </Grid>
 </Window>

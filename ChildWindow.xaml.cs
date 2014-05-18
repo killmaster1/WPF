@@ -23,6 +23,7 @@ namespace WPF
         public ChildWindow(DataClass data)
         {
             InitializeComponent();
+            myGrid.ShowGridLines = true;
             foreach (UcitelClass u in data.uc)
             {
                 combo1.Items.Add(u.Name);
@@ -43,7 +44,6 @@ namespace WPF
             }
             string[] arr = { "Time\\Day", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" };
             TextBlock txt2;
-            
             for (int i = 0; i < 6; i++)
             {
                 txt2 = new TextBlock();

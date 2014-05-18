@@ -85,21 +85,62 @@ namespace WPF
             }
         }
 
-        private int timetoindex(string time)
+        private int timetoindex(string time_)
         {
+
+            switch (time_)
+            {
+                case " 8 10":
+                    return 0;
+                case " 9 00":
+                    return 1;
+                case " 9 50":
+                    return 2;
+                case "10 40":
+                    return 3;
+                case "11 30":
+                    return 4;
+                case "12 20":
+                    return 5;
+                case "13 10":
+                    return 6;
+                case "14 00":
+                    return 7;
+                case "14 50":
+                    return 8;
+                case "15 40":
+                    return 9;
+                case "16 30":
+                    return 10;
+                case "17 20":
+                    return 11;
+                case "18 10":
+                    return 12;
+                case "19 00":
+                    return 13;
+                default:
+                    return -1;
+            }
+           /* string time = time_;
+            if (time[0] == ' ')
+            {
+                time[0] = '0';
+            }
+            Console.WriteLine("pred je:" + time);
             DateTime dateN = new DateTime(2000, 1, 1, 19, 10, 00);
             int i = 0;
             for (DateTime date1 = new DateTime(2000, 1, 1, 8, 10, 00);
                 date1 < dateN;
                 date1 = date1.AddMinutes(50))
             {
+                Console.WriteLine("testujem na:" + date1.ToString("HH mm"));
                 if (date1.ToString("HH mm") == time)
                 {
                     return i;
                 }
                 i++;
             }
-            return -1;
+            return -1;*/
         }
 
       }

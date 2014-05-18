@@ -21,7 +21,7 @@ namespace WPF
         }
 
         //dostane riadok s predmetom pre daneho ucitela
-        public bool addItem(string predmet){
+        /*public bool addItem(string predmet){
             //Console.WriteLine(Name+" "+predmet);
             //string[] sa = predmet.Split(new char[0], StringSplitOptions.RemoveEmptyEntries);
             Console.WriteLine(predmet.Substring(14, 1));
@@ -35,7 +35,7 @@ namespace WPF
 
 
             return true;
-        }
+        }*/
 
         public bool addPredmet(int den, int cas, int pocet_hodin, string nazov)
         {
@@ -43,17 +43,21 @@ namespace WPF
             //int time = timetoindex(cas);
             //int pocet = Convert.ToInt32(pocet_hodin);
 
-            for (int i = 0; i < pocet;i++ )
+            for (int i = 0; i < pocet_hodin;i++ )
             {
-                pred[time, day] = nazov;
-                time++;
+                if (cas < 14&&den<5)
+                {
+                    //Console.WriteLine(cas + " " + den);
+                    pred[cas, den] = nazov;
+                }
+                cas++;
             }
 
             return true;
         }
 
         // preklada nazvy dni do indexov do pola
-        public int daytoindex(string pred)
+        /*public int daytoindex(string pred)
         {
             switch (pred)
             {
@@ -75,6 +79,7 @@ namespace WPF
         // preklada casi do indexov do pola
         private int timetoindex(string time)
         {
+            Console.WriteLine("Pred je: "+time);
             DateTime dateN = new DateTime(2000, 1, 1, 19, 10,00);
             int i = 0;
             for (DateTime date1 = new DateTime(2000, 1, 1, 8, 10, 00);
@@ -88,6 +93,6 @@ namespace WPF
                 i++;
             }
             return -1;
-        }
+        }*/
     }
 }
