@@ -3,110 +3,18 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="724.628" Width="1011.568">
     <Grid Margin="0,0,2,-6">
-        <Button Content="Browse..." HorizontalAlignment="Left" Margin="872,669,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click"/>
-        <ComboBox x:Name="combo1" HorizontalAlignment="Left" Margin="872,10,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="-0.142,3.182"/>
+        <Button Content="Browse..." HorizontalAlignment="Left" Margin="872,642,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click"/>
+        <ComboBox x:Name="combo1" HorizontalAlignment="Left" Margin="872,10,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="-0.142,3.182" SelectionChanged="combo1_SelectionChanged"/>
         <Grid Margin="0,0,135,28">
             <FlowDocumentScrollViewer Margin="0,10,10,0" VerticalScrollBarVisibility="Disabled">
                 <FlowDocument>
                     <Table x:Name="tabulka" CellSpacing="5" BorderThickness="2">
-
-                        <!--
-                        <TableRowGroup>
-                            <TableRow>
-                                <TableCell>
-                                    <Paragraph></Paragraph>
-                                </TableCell>
-                                <TableCell>
-                                    <Paragraph>
-                                        <Run x:Name="jedna">
-                                            Monday
-                                        </Run>
-                                    </Paragraph>
-                                </TableCell>
-                                <TableCell>
-                                    <Paragraph>Tuesday</Paragraph>
-                                </TableCell>
-                                <TableCell>
-                                    <Paragraph>Wednesday</Paragraph>
-                                </TableCell>
-                                <TableCell>
-                                    <Paragraph>Thursday</Paragraph>
-                                </TableCell>
-                                <TableCell>
-                                    <Paragraph>Friday</Paragraph>
-                                </TableCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableCell>
-                                    <Paragraph>8:10</Paragraph>
-                                </TableCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableCell>
-                                    <Paragraph>9:00</Paragraph>
-                                </TableCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableCell>
-                                    <Paragraph>10:40</Paragraph>
-                                </TableCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableCell>
-                                    <Paragraph>11:30</Paragraph>
-                                </TableCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableCell>
-                                    <Paragraph>12:20</Paragraph>
-                                </TableCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableCell>
-                                    <Paragraph>13:10</Paragraph>
-                                </TableCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableCell>
-                                    <Paragraph>14:00</Paragraph>
-                                </TableCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableCell>
-                                    <Paragraph>14:50</Paragraph>
-                                </TableCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableCell>
-                                    <Paragraph>15:40</Paragraph>
-                                </TableCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableCell>
-                                    <Paragraph>16:30</Paragraph>
-                                </TableCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableCell>
-                                    <Paragraph>17:20</Paragraph>
-                                </TableCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableCell>
-                                    <Paragraph>18:10</Paragraph>
-                                </TableCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableCell>
-                                    <Paragraph>19:00</Paragraph>
-                                </TableCell>
-                            </TableRow>
-                            
-                        </TableRowGroup>-->
                     </Table>
                 </FlowDocument>
             </FlowDocumentScrollViewer>
         </Grid>
-        <Button x:Name="addButton" Content="Add Requirements" HorizontalAlignment="Left" Margin="872,642,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click_1"/>
+        <Button x:Name="addButton" Content="Requirements for this teacher" HorizontalAlignment="Left" Margin="872,54,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click_1"/>
+        <Button Content="Export Requirements" HorizontalAlignment="Left" Margin="872,544,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click_2"/>
+        <Button Content="Import Requirements" HorizontalAlignment="Left" Margin="872,571,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click_3"/>
     </Grid>
 </Window>

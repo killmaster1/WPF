@@ -20,8 +20,10 @@ namespace WPF
     public partial class ChildWindow : Window
     {
         public CheckBox[,] chb;
-        public ChildWindow(DataClass data)
+        private DataClass data;
+        public ChildWindow(DataClass data_)
         {
+            data = data_;
             InitializeComponent();
             myGrid.ShowGridLines = true;
             foreach (UcitelClass u in data.uc)
@@ -70,6 +72,7 @@ namespace WPF
                         Grid.SetRow(pom, i);
                         Grid.SetColumn(pom, j);
                         myGrid.Children.Add(pom);
+                        chb[i - 1, j - 1] = pom;
                     }
                 }
 
@@ -94,6 +97,25 @@ namespace WPF
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            for (int i = 0; i < data.uc.Count; i++)
+            {
+                if (combo1.SelectedValue.ToString() == data.uc[i].Name)
+                {
+                    for (int k = 0; k < 14; k++)
+                    {
+                        for (int l = 0; l < 5; l++)
+                        {
+                            data.uc[i].nope[k, l] = new Boolean();
+                            data.uc[i].nope[k, l] = chb[k, l].IsChecked.Value;
+                        }
+                    }
+                }
+            }
+            this.Close();
         }
     }
 }

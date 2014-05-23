@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Win32;
 using System.IO;
+using System.Data;
 
 namespace WPF
 {
@@ -72,7 +73,7 @@ namespace WPF
             TableRow currentRow = tabulka.RowGroups[0].Rows[0];
 
             currentRow.Background = Brushes.Silver;
-            currentRow.FontSize = 10;
+            currentRow.FontSize = 12;
             currentRow.FontWeight = System.Windows.FontWeights.Bold;
 
             // Add the header row with content, 
@@ -116,18 +117,18 @@ namespace WPF
                 }
                 i++;//toto az na koniec
             }
-            for(int  k =0;k<15;k++){
+            /*for(int  k =0;k<15;k++){
                 for (int l = 0; l < 6; l++)
                 {
-                    tabulka.RowGroups[0].Rows[k].Cells[l].Padding = new Thickness(12);
+                    tabulka.RowGroups[0].Rows[k].Cells[l].Padding = new Thickness(13);
                 }
-            }
+            }*/
         }
 //-----------------------------------------------------------------------------------------------------------
         private void showInTable(int cas,int den,string predmet,bool ok)
         {
-            int pom = Constants.PREDMET_LENGTH;
-            int n = pom-predmet.Length;
+            //int pom = Constants.PREDMET_LENGTH;
+            //int n = pom-predmet.Length;
                 if (ok)
                 {
                     if (cas % 2 == 1)
@@ -152,6 +153,64 @@ namespace WPF
             Window a = new ChildWindow(data);
             a.Owner = this;
             a.ShowDialog();
+        }
+
+        private void combo1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int pom = 0;
+            string pom2 = ((ComboBox) sender).SelectedItem as string;
+            for (int i = 0; i < data.uc.Count; i++)
+            {
+                if (data.uc[i].Name == pom2)
+                {
+                    pom = i;
+                    break;
+                }
+            }
+            showTeacher(pom);
+        }
+//-----------------------------------------------------------------------------------------------------------
+        private void showTeacher(int pom)
+        {
+            for (int k = 0; k < 14; k++)
+            {
+                for (int l = 0; l < 5; l++)
+                {
+                    showInTable(k,l,data.uc[pom].pred[k,l],!data.uc[pom].nope[k,l]);
+                }
+            }
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+
+            //export
+
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.FileName = "rozvrh"; // Default file name
+            dlg.DefaultExt = ".text"; // Default file extension
+            dlg.Filter = "Text documents (.txt)|*.txt"; // Filter files by extension 
+
+            // Show save file dialog box
+            Nullable<bool> result = dlg.ShowDialog();
+
+            // Process save file dialog box results 
+            if (result == true)
+            {
+                // Save document 
+                string filename = dlg.FileName;
+            }
+
+            /*foreach (UcitelClass ucitel in data)
+            {
+
+            }*/
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            //import
+
         }
     }
 }

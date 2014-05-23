@@ -17,6 +17,7 @@ namespace WPF
         {
             Name = name_;
             pred = new string[14, 5];
+            nope = new bool[14, 5];
             //d = new Dictionary<string,string[,]>();
         }
 
