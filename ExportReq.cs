@@ -25,8 +25,6 @@ namespace WPF
             {
                 // Save document 
                 string path = dlg.FileName;
-                using (FileStream fs = File.Create(path))
-                {
                     string pom = "";
                     foreach (UcitelClass u in uc)
                     {
@@ -40,10 +38,13 @@ namespace WPF
                             pom = pom + Environment.NewLine;
                         }
                     }
-                    Byte[] info = new UTF8Encoding(true).GetBytes(pom);
+                    /*Byte[] info = new AN
                     // Add some information to the file.
-                    fs.Write(info, 0, info.Length);
-                }
+                    fs.Write(info, 0, info.Length);*/
+
+                    StreamWriter sw = new StreamWriter(path, true, Encoding.GetEncoding(1252));
+                    sw.Write(pom);
+                    sw.Close();
             }
         }
     }

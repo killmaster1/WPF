@@ -24,25 +24,40 @@ namespace WPF
 
                 Console.WriteLine("Opening: " + openFileDialog1.FileName);
                 string[] readText = File.ReadAllLines(openFileDialog1.FileName, Encoding.Default);
-                int riadok =-1;
+
                 UcitelClass u;
-                foreach (string line in readText)
+                int poc = 0; // urcuje ci sme na riadku s menom alebo na riadku s hodnotami
+                string[] pom;
+                int ucit =0;
+                for (int kl = 0; kl < readText.Length ; kl++ )
                 {
-                    if (riadok == -1)
+                    if (kl % 15 == 0)
                     {
+                        bool nic = true; //nenasla sa zhoda mena so zoznamom;
                         for (int i = 0; i < uc.Count; i++)
                         {
-                            if (uc[i].Name == line)
+                            if (uc[i].Name == readText[kl])
                             {
-                                u = uc[i];
-                                riadok++;
+                                Console.WriteLine(readText[kl]);
+                                nic = false;
+                                ucit = i;
                                 break;
                             }
                         }
-                    }
-                    if (riadok != -1)
-                    {
+                        if (nic)
+                        {
+                            kl += 14;//preskocime daneho ucitela pretoze ho nemame v tabulke
+                            continue;
+                        }
 
+                    }
+                    if (kl % 15 != 0)
+                    {
+                        pom = readText[kl].Split(' ');
+                        for (int i = 0; i < 5; i++)
+                        {
+                            uc[ucit].nope[(kl % 15) - 1, i] = Convert.ToBoolean(pom[i]);
+                        }
                     }
 
                 }
