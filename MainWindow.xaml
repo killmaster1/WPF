@@ -13,7 +13,7 @@
                 </FlowDocument>
             </FlowDocumentScrollViewer>
         </Grid>
-        <Button x:Name="addButton" Content="Requirements for this teacher" HorizontalAlignment="Left" Margin="872,54,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click_1"/>
+        <Button x:Name="addButton" Content="Requirements for this teacher" HorizontalAlignment="Left" Margin="872,54,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click_1" Height="25"/>
         <Button Content="Export Requirements" HorizontalAlignment="Left" Margin="872,544,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click_2"/>
         <Button Content="Import Requirements" HorizontalAlignment="Left" Margin="872,571,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click_3"/>
     </Grid>

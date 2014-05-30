@@ -53,6 +53,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ExportReq.cs" />
+    <Compile Include="ImportReq.cs" />
     <Compile Include="UcitelClass.cs" />
     <Page Include="ChildWindow.xaml">
       <SubType>Designer</SubType>

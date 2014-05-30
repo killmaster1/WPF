@@ -186,31 +186,14 @@ namespace WPF
 
             //export
 
-            SaveFileDialog dlg = new SaveFileDialog();
-            dlg.FileName = "rozvrh"; // Default file name
-            dlg.DefaultExt = ".text"; // Default file extension
-            dlg.Filter = "Text documents (.txt)|*.txt"; // Filter files by extension 
-
-            // Show save file dialog box
-            Nullable<bool> result = dlg.ShowDialog();
-
-            // Process save file dialog box results 
-            if (result == true)
-            {
-                // Save document 
-                string filename = dlg.FileName;
-            }
-
-            /*foreach (UcitelClass ucitel in data)
-            {
-
-            }*/
+            ExportReq.create(data.uc);
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             //import
 
+            ImportReq.load(data.uc);
         }
     }
 }
