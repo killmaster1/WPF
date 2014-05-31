@@ -69,55 +69,54 @@ namespace WPF
 //-----------------------------------------------------------------------------------------------------------
         private void createTable()
         {
-            tabulka.RowGroups.Add(new TableRowGroup());
-            tabulka.RowGroups[0].Rows.Add(new TableRow());
-            TableRow currentRow = tabulka.RowGroups[0].Rows[0];
-
-            currentRow.Background = Brushes.Silver;
-            currentRow.FontSize = 12;
-            currentRow.FontWeight = System.Windows.FontWeights.Bold;
-
-            // Add the header row with content, 
-            pom = new Run("Time\\Day");
-            currentRow.Cells.Add(new TableCell(new Paragraph(pom)));
-            pom = new Run("Monday");
-            currentRow.Cells.Add(new TableCell(new Paragraph(pom)));
-            pom = new Run("Tuesday");
-            currentRow.Cells.Add(new TableCell(new Paragraph(pom)));
-            pom = new Run("Wednesday");
-            currentRow.Cells.Add(new TableCell(new Paragraph(pom)));
-            pom = new Run("Thursday");
-            currentRow.Cells.Add(new TableCell(new Paragraph(pom)));
-            pom = new Run("Friday");
-            currentRow.Cells.Add(new TableCell(new Paragraph(pom)));
-
-
-            DateTime dateN = new DateTime(2000, 1, 1, 19, 10, 00);
-            int i = 0;
             sched = new Run[14, 5];
-            for (DateTime date1 = new DateTime(2000, 1, 1, 8, 10, 00);
-                date1 < dateN;
-                date1 = date1.AddMinutes(50))
-            {
-                TableRow tr = new TableRow();
-                tr.FontSize = 10;
-                if (i % 2 == 1)
-                {
-                    tr.Background = Brushes.Silver;
-                }
 
-                tabulka.RowGroups[0].Rows.Add(tr);
-                pom = new Run(date1.ToString("HH:mm"));
-                tr.Cells.Add(new TableCell(new Paragraph(pom)));
-                for (int j = 0; j < 5; j++)
-                {
-                    sched[i, j] = new Run();
-                    TableCell asd = new TableCell(new Paragraph(sched[i,j]));
-                    tr.Cells.Add(asd);
-                    showInTable(i, j, i.ToString() + " " + j.ToString(), true);
-                }
-                i++;//toto az na koniec
+            myGrid.ShowGridLines = true;
+
+            RowDefinition rowDef1;
+            for (int i = 0; i < 15; i++)
+            {
+                rowDef1 = new RowDefinition();
+                myGrid.RowDefinitions.Add(rowDef1);
             }
+            ColumnDefinition colDef1;
+            for (int i = 0; i < 6; i++)
+            {
+                colDef1 = new ColumnDefinition();
+                myGrid.ColumnDefinitions.Add(colDef1);
+            }
+            string[] arr = { "Time\\Day", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" };
+            TextBlock txt2;
+            for (int i = 0; i < 6; i++)
+            {
+                txt2 = new TextBlock();
+                txt2.Text = arr[i];
+                Grid.SetRow(txt2, 0);
+                Grid.SetColumn(txt2, i);
+                myGrid.Children.Add(txt2);
+            }
+            DateTime date1 = new DateTime(2000, 1, 1, 8, 10, 00);
+            for (int i = 1; i < 15; i++)
+            {
+                txt2 = new TextBlock();
+                txt2.Text = date1.ToString("HH:mm");
+                Grid.SetRow(txt2, i);
+                Grid.SetColumn(txt2, 0);
+                myGrid.Children.Add(txt2);
+                date1 = date1.AddMinutes(50);
+            }
+            for (int i = 1; i < 15; i++)
+            {
+                for (int j = 1; j < 6; j++)
+                {
+                    sched[i-1, j-1] = new Run();
+                    TextBlock blc = new TextBlock(sched[i-1, j-1]);
+                    Grid.SetRow(blc, i);
+                    Grid.SetColumn(blc, j);
+                    myGrid.Children.Add(blc);
+                }
+            }
+            
             /*for(int  k =0;k<15;k++){
                 for (int l = 0; l < 6; l++)
                 {
@@ -132,19 +131,11 @@ namespace WPF
             //int n = pom-predmet.Length;
                 if (ok)
                 {
-                    if (cas % 2 == 1)
-                    {
-                        tabulka.RowGroups[0].Rows[cas+1].Cells[den+1].Background = Brushes.Silver;
-                    }
-                    else
-                    {
-                        tabulka.RowGroups[0].Rows[cas + 1].Cells[den + 1].Background = Brushes.White;
-                    }
                     sched[cas, den].Text = predmet;
                 }
                 else
                 {
-                    tabulka.RowGroups[0].Rows[cas + 1].Cells[den + 1].Background = Brushes.Red;
+                    sched[cas, den].Background = Brushes.Red;
                     sched[cas, den].Text = predmet;
                 }
         }
