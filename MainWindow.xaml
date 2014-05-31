@@ -5,6 +5,11 @@
     <Grid Margin="0,0,2,-6">
         <Button Content="Browse..." HorizontalAlignment="Left" Margin="872,642,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click"/>
         <ComboBox x:Name="combo1" HorizontalAlignment="Left" Margin="872,10,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="-0.142,3.182" SelectionChanged="combo1_SelectionChanged"/>
+<<<<<<< HEAD
+<<<<<<< HEAD
+        <Grid x:Name="myGrid" HorizontalAlignment="Left" Height="676" Margin="6,11,0,0" VerticalAlignment="Top" Width="859" RenderTransformOrigin="0.5,0.5">
+            
+=======
         <Grid Margin="0,0,135,28">
             <FlowDocumentScrollViewer Margin="0,10,10,0" VerticalScrollBarVisibility="Disabled">
                 <FlowDocument>
@@ -12,6 +17,11 @@
                     </Table>
                 </FlowDocument>
             </FlowDocumentScrollViewer>
+>>>>>>> parent of e2389b0... 31.5.2014-Tabulka
+=======
+        <Grid x:Name="myGrid" HorizontalAlignment="Left" Height="676" Margin="6,11,0,0" VerticalAlignment="Top" Width="859" RenderTransformOrigin="0.5,0.5">
+            
+>>>>>>> cb92684c5647a4fe7ec072003cfb9a577d6eea23
         </Grid>
         <Button x:Name="addButton" Content="Requirements for this teacher" HorizontalAlignment="Left" Margin="872,54,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click_1" Height="25"/>
         <Button Content="Export Requirements" HorizontalAlignment="Left" Margin="872,544,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click_2"/>
