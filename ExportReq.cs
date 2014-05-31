@@ -25,6 +25,7 @@ namespace WPF
             {
                 // Save document 
                 string path = dlg.FileName;
+                File.Delete(path);
                     string pom = "";
                     foreach (UcitelClass u in uc)
                     {

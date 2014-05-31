@@ -6,9 +6,10 @@
         <Button Content="Browse..." HorizontalAlignment="Left" Margin="872,642,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click"/>
         <ComboBox x:Name="combo1" HorizontalAlignment="Left" Margin="872,10,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="-0.142,3.182" SelectionChanged="combo1_SelectionChanged"/>
         <Grid Margin="0,0,135,28">
-            <FlowDocumentScrollViewer Margin="0,10,10,0" VerticalScrollBarVisibility="Disabled">
+            <FlowDocumentScrollViewer Margin="0,10,0,0" VerticalScrollBarVisibility="Disabled" RenderTransformOrigin="0.496,0.991" HorizontalAlignment="Left" Width="857">
                 <FlowDocument>
-                    <Table x:Name="tabulka" CellSpacing="5" BorderThickness="2">
+                    <Table x:Name="tabulka" CellSpacing="5" BorderThickness="0">
+                     
                     </Table>
                 </FlowDocument>
             </FlowDocumentScrollViewer>
