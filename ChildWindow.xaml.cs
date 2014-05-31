@@ -20,16 +20,14 @@ namespace WPF
     public partial class ChildWindow : Window
     {
         public CheckBox[,] chb;
-        private DataClass data;
-        public ChildWindow(DataClass data_)
+        private UcitelClass ucitel;
+        public ChildWindow(UcitelClass ucitel_)
         {
-            data = data_;
+            ucitel = ucitel_;
             InitializeComponent();
+            label1.Content = ucitel.Name;
             myGrid.ShowGridLines = true;
-            foreach (UcitelClass u in data.uc)
-            {
-                combo1.Items.Add(u.Name);
-            }
+            
             chb = new CheckBox[14, 5];
             CheckBox pom;
             RowDefinition rowDef1;
@@ -72,25 +70,10 @@ namespace WPF
                         Grid.SetRow(pom, i);
                         Grid.SetColumn(pom, j);
                         myGrid.Children.Add(pom);
+                        pom.IsChecked = ucitel.nope[i - 1, j - 1];
                         chb[i - 1, j - 1] = pom;
                     }
                 }
-
-            /*ColumnDefinition colDef1 = new ColumnDefinition();
-            ColumnDefinition colDef2 = new ColumnDefinition();
-            myGrid.ColumnDefinitions.Add(colDef1);
-            myGrid.ColumnDefinitions.Add(colDef2);
-            RowDefinition rowDef1 = new RowDefinition();
-            RowDefinition rowDef2 = new RowDefinition();
-            myGrid.RowDefinitions.Add(rowDef1);
-            myGrid.RowDefinitions.Add(rowDef2);
-            TextBlock txt2 = new TextBlock();
-            txt2.Text = "Quarter 1";
-            txt2.FontSize = 12;
-            txt2.FontWeight = FontWeights.Bold;
-            Grid.SetRow(txt2, 1);
-            Grid.SetColumn(txt2, 0);
-            myGrid.Children.Add(txt2);*/
             
         }
 
@@ -101,20 +84,15 @@ namespace WPF
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            for (int i = 0; i < data.uc.Count; i++)
-            {
-                if (combo1.SelectedValue.ToString() == data.uc[i].Name)
-                {
                     for (int k = 0; k < 14; k++)
                     {
                         for (int l = 0; l < 5; l++)
                         {
-                            data.uc[i].nope[k, l] = new Boolean();
-                            data.uc[i].nope[k, l] = chb[k, l].IsChecked.Value;
+                            ucitel.nope[k, l] = new Boolean();
+                            ucitel.nope[k, l] = chb[k, l].IsChecked.Value;
                         }
                     }
-                }
-            }
+
             this.Close();
         }
     }

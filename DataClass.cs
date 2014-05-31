@@ -17,11 +17,20 @@ namespace WPF
             d = new Dictionary<string,string[,]>();
         }
 
+        public UcitelClass findUcitel(string name){
+            foreach (UcitelClass u in uc)
+            {
+                if (u.Name == name)
+                {
+                    return u;
+                }
+            }
+            return null;
+        }
+
         public void loadFileData(string fp){
-            //StreamReader reader = File.OpenText(fp);
             string[] readText = File.ReadAllLines(fp, Encoding.Default);
             bool citam_pred = false;
-            //string line;
             UcitelClass u = new UcitelClass("bla");
             uc = new List<UcitelClass>();
             int d =0;
@@ -37,7 +46,6 @@ namespace WPF
                 }
                 if (citam_pred)
                 {
-                    //u.addItem(line);
                     //72 nazov
                     name = line.Substring(26, 72);
                     if (line.Substring(3, 3) != "   ")
@@ -57,11 +65,8 @@ namespace WPF
                 if (line[0] != ' ' && line[0] != '*')
                 {
                     citam_pred = true;
-                    //d.Add(line,new string[14,5]);
                     u = new UcitelClass(line);
                     uc.Add(u);
-                    
-                    //d.Add(line,new string[15,5]);
                 }
             }
         }
@@ -121,26 +126,6 @@ namespace WPF
                 default:
                     return -1;
             }
-           /* string time = time_;
-            if (time[0] == ' ')
-            {
-                time[0] = '0';
-            }
-            Console.WriteLine("pred je:" + time);
-            DateTime dateN = new DateTime(2000, 1, 1, 19, 10, 00);
-            int i = 0;
-            for (DateTime date1 = new DateTime(2000, 1, 1, 8, 10, 00);
-                date1 < dateN;
-                date1 = date1.AddMinutes(50))
-            {
-                Console.WriteLine("testujem na:" + date1.ToString("HH mm"));
-                if (date1.ToString("HH mm") == time)
-                {
-                    return i;
-                }
-                i++;
-            }
-            return -1;*/
         }
 
       }

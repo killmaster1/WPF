@@ -8,7 +8,7 @@
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
         <Grid HorizontalAlignment="Left" Height="627" VerticalAlignment="Top" Width="744">
-            <Label Content="Teacher" HorizontalAlignment="Left" Margin="32,25,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="label1" Content="Teacher" HorizontalAlignment="Left" Margin="32,25,0,0" VerticalAlignment="Top"/>
             <Grid x:Name="myGrid" HorizontalAlignment="Left" Height="551" Margin="226,76,-195,-325" VerticalAlignment="Top" Width="517" RenderTransformOrigin="0.5,0.5">
                 <Grid.RenderTransform>
                     <TransformGroup>
@@ -21,6 +21,5 @@
             </Grid>
             <Button x:Name="OK" Content="OK" HorizontalAlignment="Left" Margin="32,110,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
         </Grid>
-        <ComboBox x:Name="combo1" HorizontalAlignment="Left" Height="21" Margin="37,54,0,0" VerticalAlignment="Top" Width="165" RenderTransformOrigin="-1.198,2.043" SelectionChanged="ComboBox_SelectionChanged"/>
     </Grid>
 </Window>

@@ -55,6 +55,7 @@
     </ApplicationDefinition>
     <Compile Include="ExportReq.cs" />
     <Compile Include="ImportReq.cs" />
+    <Compile Include="NopeClass.cs" />
     <Compile Include="UcitelClass.cs" />
     <Page Include="ChildWindow.xaml">
       <SubType>Designer</SubType>

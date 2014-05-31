@@ -30,6 +30,7 @@ namespace WPF
         Run pom;
         Run[,] sched;
         DataClass data;
+        int g_pom;
         public MainWindow()
         {
             InitializeComponent();
@@ -150,11 +151,13 @@ namespace WPF
 //-----------------------------------------------------------------------------------------------------------
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Window a = new ChildWindow(data);
+            //add req for teacher
+            Window a = new ChildWindow(data.findUcitel(combo1.SelectedValue.ToString()));
             a.Owner = this;
             a.ShowDialog();
+            showTeacher(g_pom);
         }
-
+//-----------------------------------------------------------------------------------------------------------
         private void combo1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int pom = 0;
@@ -172,6 +175,7 @@ namespace WPF
 //-----------------------------------------------------------------------------------------------------------
         private void showTeacher(int pom)
         {
+            g_pom = pom;
             for (int k = 0; k < 14; k++)
             {
                 for (int l = 0; l < 5; l++)
