@@ -15,6 +15,7 @@ namespace WPF
         public DataClass()
         {
             d = new Dictionary<string,string[,]>();
+            uc = new List<UcitelClass>();
         }
 
         public UcitelClass findUcitel(string name){
