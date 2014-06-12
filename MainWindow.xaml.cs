@@ -37,6 +37,7 @@ namespace WPF
             addButton.IsEnabled = false;
             data = new DataClass();
             createTable();
+            g_pom = 0;
         }
 //-----------------------------------------------------------------------------------------------------------
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -207,6 +208,7 @@ namespace WPF
             //import
 
             ImportReq.load(data.uc);
+            showTeacher(g_pom);
         }
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
