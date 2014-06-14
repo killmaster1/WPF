@@ -14,11 +14,12 @@ namespace WPF
 
         public DataClass()
         {
-            d = new Dictionary<string,string[,]>();
+            d = new Dictionary<string, string[,]>();
             uc = new List<UcitelClass>();
         }
 
-        public UcitelClass findUcitel(string name){
+        public UcitelClass findUcitel(string name)
+        {
             foreach (UcitelClass u in uc)
             {
                 if (u.Name == name)
@@ -29,17 +30,19 @@ namespace WPF
             return null;
         }
 
-        public void loadFileData(string fp){
+        public void loadFileData(string fp)
+        {
             string[] readText = File.ReadAllLines(fp, Encoding.Default);
             bool citam_pred = false;
             UcitelClass u = new UcitelClass("bla");
             uc = new List<UcitelClass>();
-            int d =0;
-            int t=0;
-            int h=0;
+            int d = 0;
+            int t = 0;
+            int h = 0;
             string name;
 
-            foreach(string line in readText) {
+            foreach (string line in readText)
+            {
                 if (line.Length == 0)
                 {
                     citam_pred = false;
@@ -53,7 +56,8 @@ namespace WPF
                     {
                         d = daytoindex(line.Substring(3, 3));
                     }
-                    if(line.Substring(7, 5)!="     "){
+                    if (line.Substring(7, 5) != "     ")
+                    {
                         t = timetoindex(line.Substring(7, 5));
                     }
                     if (line.Substring(14, 1) != " ")
@@ -129,5 +133,30 @@ namespace WPF
             }
         }
 
-      }
+        public List<UcitelClass> conflict()
+        {
+            List<UcitelClass> pom = new List<UcitelClass>();
+            bool conf;
+            foreach (UcitelClass a in uc)
+            {
+                conf = false;
+                for (int i = 0; i < 14; i++)
+                {
+                    for (int j = 0; j < 5; j++)
+                    {
+                        if (a.pred[i, j] != null && a.nope[i, j])
+                        {
+                            conf = true;
+                        }
+                    }
+                }
+                if (conf)
+                {
+                    pom.Add(a);
+                }
+            }
+            return pom;
+
+        }
+    }
 }

@@ -69,6 +69,15 @@ namespace WPF
                 combo1.Items.Add(u.Name);
             }
         }
+        private void updateCombo2()
+        {
+            combo2.Items.Clear();
+            List<UcitelClass> pom = data.conflict();
+            foreach (UcitelClass u in pom)
+            {
+                combo2.Items.Add(u.Name);
+            }
+        }
 //-----------------------------------------------------------------------------------------------------------
         private void createTable()
         {
@@ -160,6 +169,7 @@ namespace WPF
             Window a = new ChildWindow(data.findUcitel(pom));
             a.Owner = this;
             a.ShowDialog();
+            updateCombo2();
             showTeacher(g_pom);
         }
 //-----------------------------------------------------------------------------------------------------------
@@ -208,6 +218,7 @@ namespace WPF
             //import
 
             ImportReq.load(data.uc);
+            updateCombo2();
             showTeacher(g_pom);
         }
 
@@ -217,6 +228,21 @@ namespace WPF
 
             data = new DataClass();
             combo1.Items.Clear();
+        }
+
+        private void combo2_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int pom = 0;
+            string pom2 = ((ComboBox)sender).SelectedItem as string;
+            for (int i = 0; i < data.uc.Count; i++)
+            {
+                if (data.uc[i].Name == pom2)
+                {
+                    pom = i;
+                    break;
+                }
+            }
+            showTeacher(pom);
         }
     }
 }
