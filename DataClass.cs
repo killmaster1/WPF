@@ -11,11 +11,15 @@ namespace WPF
     {
         public Dictionary<string, string[,]> d;
         public List<UcitelClass> uc;
+        public List<UcitelClass> kr;
+        private List<string[]> aliasy;
 
         public DataClass()
         {
             d = new Dictionary<string, string[,]>();
             uc = new List<UcitelClass>();
+            kr = new List<UcitelClass>();
+            
         }
 
         public UcitelClass findUcitel(string name)
@@ -40,7 +44,7 @@ namespace WPF
             int t = 0;
             int h = 0;
             string name;
-
+            loadAlias();
             foreach (string line in readText)
             {
                 if (line.Length == 0)
@@ -65,6 +69,7 @@ namespace WPF
                         h = Convert.ToInt32(line.Substring(14, 1));
                     }
                     u.addPredmet(d, t, h, name);
+                    addKruzok(d, t, h, name,line.Substring(98, line.Length - 98));
 
                 }
                 if (line[0] != ' ' && line[0] != '*')
@@ -157,6 +162,79 @@ namespace WPF
             }
             return pom;
 
+        }
+
+        private void loadAlias()
+        {
+            aliasy = new List<string[]>();
+            string[] readText = File.ReadAllLines("_aliasy.txt", Encoding.Default);
+            string[] pom;
+            string[] a = new String[]{"=", ","};
+            
+            foreach (string line in readText)
+            {
+                pom = line.Split(a, StringSplitOptions.None);
+                aliasy.Add(pom);
+            }
+
+        }
+
+        private void addKruzok(int d, int t, int h,string name,string kruz_)
+        {
+            //Console.WriteLine(kruz_);
+            string[] kruz = kruz_.Split(' ');
+            UcitelClass kruzok;
+            bool najd = false;
+            foreach (string a in kruz)
+            {
+                if (a.Contains("*"))
+                {
+                    foreach (string[] b in aliasy)
+                    {
+                        if (a == b[0])
+                        {
+                            for (int i = 1; i < b.Length; i++)
+                            {
+                                kruzok = new UcitelClass("bla");
+                                najd = false;
+                                foreach (UcitelClass k in kr)
+                                {
+                                    if (k.Name == b[i])
+                                    {
+                                        kruzok = k;
+                                        najd = true;
+                                    }
+                                }
+                                if (!najd)
+                                {
+                                    kruzok = new UcitelClass(b[i]);
+                                    kr.Add(kruzok);
+                                }
+                                Console.WriteLine("Som tu");
+                                kruzok.addPredmet(d, t, h, name);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    najd = false;
+                    kruzok = new UcitelClass(a);
+                    foreach (UcitelClass k in kr)
+                    {
+                        if (k.Name == a)
+                        {
+                            kruzok = k;
+                            najd = true;
+                        }
+                    }
+                    if (!najd)
+                    {
+                        kr.Add(kruzok);
+                    }
+                    kruzok.addPredmet(d, t, h, name);
+                }
+            }
         }
     }
 }

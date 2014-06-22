@@ -30,14 +30,14 @@ namespace WPF
         Run pom;
         Run[,] sched;
         DataClass data;
-        int g_pom;
+        UcitelClass g_pom;
         public MainWindow()
         {
             InitializeComponent();
             addButton.IsEnabled = false;
             data = new DataClass();
             createTable();
-            g_pom = 0;
+            g_pom = null;
         }
 //-----------------------------------------------------------------------------------------------------------
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -50,6 +50,7 @@ namespace WPF
             openFileDialog1.FilterIndex = 2;
             openFileDialog1.RestoreDirectory = true;
             Nullable<bool> result = openFileDialog1.ShowDialog();
+
             if (result == true)
             {
 
@@ -73,6 +74,7 @@ namespace WPF
         {
             combo2.Items.Clear();
             List<UcitelClass> pom = data.conflict();
+
             foreach (UcitelClass u in pom)
             {
                 combo2.Items.Add(u.Name);
@@ -164,7 +166,7 @@ namespace WPF
                 return;
             }
             string pom = combo1.SelectedValue.ToString();
-            Console.WriteLine("bla:"+pom);
+            //Console.WriteLine("bla:"+pom);
 
             Window a = new ChildWindow(data.findUcitel(pom));
             a.Owner = this;
@@ -175,32 +177,37 @@ namespace WPF
 //-----------------------------------------------------------------------------------------------------------
         private void combo1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            int pom = 0;
             string pom2 = ((ComboBox) sender).SelectedItem as string;
             for (int i = 0; i < data.uc.Count; i++)
             {
                 if (data.uc[i].Name == pom2)
                 {
-                    pom = i;
-                    break;
+                    showTeacher(data.uc[i]);
+                    return;
                 }
             }
-            showTeacher(pom);
+            for (int i = 0; i < data.kr.Count; i++)
+            {
+                if (data.kr[i].Name == pom2)
+                {
+                    showTeacher(data.kr[i]);
+                    return;
+                }
+            }
         }
 //-----------------------------------------------------------------------------------------------------------
-        private void showTeacher(int pom)
+        private void showTeacher(UcitelClass ucitel_)
         {
-            Console.WriteLine("pom je " + pom);
-            g_pom = pom;
-            if (data.uc.Count <= pom)
+            g_pom = ucitel_;
+            if (g_pom == null)
             {
-                return;    // ziadas zleho ucitela
+                return;
             }
             for (int k = 0; k < 14; k++)
             {
                 for (int l = 0; l < 5; l++)
                 {
-                    showInTable(k,l,data.uc[pom].pred[k,l],!data.uc[pom].nope[k,l]);
+                    showInTable(k,l,g_pom.pred[k,l],!g_pom.nope[k,l]);
                 }
             }
         }
@@ -238,11 +245,43 @@ namespace WPF
             {
                 if (data.uc[i].Name == pom2)
                 {
-                    pom = i;
+                    showTeacher(data.uc[i]);
                     break;
                 }
             }
-            showTeacher(pom);
+        }
+
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            //students
+            label1.Content = "All Groups";
+            combo2.Visibility = Visibility.Hidden;
+            label2.Visibility = Visibility.Hidden;
+            addButton.Visibility = Visibility.Hidden;
+            importBtn.Visibility = Visibility.Hidden;
+            exportBtn.Visibility = Visibility.Hidden;
+            update2Combo();
+        }
+
+        private void RadioButton_Checked_1(object sender, RoutedEventArgs e)
+        {
+            //teachers
+            label1.Content = "All Teachers";
+            combo2.Visibility = Visibility.Visible;
+            label2.Visibility = Visibility.Visible;
+            addButton.Visibility = Visibility.Visible;
+            importBtn.Visibility = Visibility.Visible;
+            exportBtn.Visibility = Visibility.Visible;
+            updateCombo();
+        }
+
+        private void update2Combo()
+        {
+            combo1.Items.Clear();
+            foreach (UcitelClass u in data.kr)
+            {
+                combo1.Items.Add(u.Name);
+            }
         }
     }
 }

@@ -4,7 +4,7 @@
         Title="MainWindow" Height="724.628" Width="1011.568">
     <Grid Margin="0,0,2,-6">
         <Button Content="Load Schedule" HorizontalAlignment="Left" Margin="872,18,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click" RenderTransformOrigin="0.483,-4.545"/>
-        <ComboBox x:Name="combo1" HorizontalAlignment="Left" Margin="872,76,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="-0.142,3.182" SelectionChanged="combo1_SelectionChanged"/>
+        <ComboBox x:Name="combo1" HorizontalAlignment="Left" Margin="872,115,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="-0.142,3.182" SelectionChanged="combo1_SelectionChanged"/>
         <Grid Margin="0,0,135,28">
             <FlowDocumentScrollViewer Margin="0,10,0,0" VerticalScrollBarVisibility="Disabled" RenderTransformOrigin="0.496,0.991" HorizontalAlignment="Left" Width="857">
                 <FlowDocument>
@@ -14,12 +14,14 @@
                 </FlowDocument>
             </FlowDocumentScrollViewer>
         </Grid>
-        <Button x:Name="addButton" Content="Requirements for this teacher" HorizontalAlignment="Left" Margin="872,103,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click_1" Height="25"/>
-        <Button Content="Export Requirements" HorizontalAlignment="Left" Margin="872,192,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click_2"/>
-        <Button Content="Import Requirements" HorizontalAlignment="Left" Margin="872,165,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click_3"/>
-        <Label Content="All Teachers:" HorizontalAlignment="Left" Margin="872,45,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Unload" HorizontalAlignment="Left" Margin="872,336,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click_4"/>
-        <ComboBox x:Name="combo2" HorizontalAlignment="Left" Margin="872,288,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="combo2_SelectionChanged"/>
-        <Label Content="Conflicts:" HorizontalAlignment="Left" Margin="872,248,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5"/>
+        <Button x:Name="addButton" Content="Requirements for this teacher" HorizontalAlignment="Left" Margin="872,142,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click_1" Height="25"/>
+        <Button x:Name="exportBtn" Content="Export Requirements" HorizontalAlignment="Left" Margin="872,235,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click_2"/>
+        <Button x:Name="importBtn" Content="Import Requirements" HorizontalAlignment="Left" Margin="872,208,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click_3"/>
+        <Label x:Name="label1" Content="All Teachers:" HorizontalAlignment="Left" Margin="872,84,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Unload" HorizontalAlignment="Left" Margin="872,386,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click_4"/>
+        <ComboBox x:Name="combo2" HorizontalAlignment="Left" Margin="872,315,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="combo2_SelectionChanged"/>
+        <Label x:Name="label2" Content="Conflicts:" HorizontalAlignment="Left" Margin="872,284,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5"/>
+        <RadioButton GroupName="group" Content="Teachers" HorizontalAlignment="Left" Margin="885,45,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked_1"/>
+        <RadioButton GroupName="group" Content="Group" HorizontalAlignment="Left" Margin="885,66,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked"/>
     </Grid>
 </Window>
