@@ -11,7 +11,7 @@ namespace WPF
         public Dictionary<string, string[,]> d; // toto asi nebudeme potreovat
         public string[,] pred; // sem sa budu ukladat predmety daneho ucitela
         public string Name; // meno ucitela
-        public bool[,] nope; //oznacuje ktore casy v poli kt. ucitel nechce ucit
+        public bool[,] nope; //oznacuje ktore casy v poli kt. ucitel nechce uci
 
         public UcitelClass(string name_)
         {
